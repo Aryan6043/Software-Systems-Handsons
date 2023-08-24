@@ -1,2 +1,3 @@
-# Software-Systems-Handsons
-This repository serves as a dedicated space for storing and organizing my handsons for the Software Systems course.
+# CS 513 Software Systems - Semester 1 (2023-25)
+
+This repository contains solutions to the hands-on assignments for the Software Systems (CS 513) course, offered during the first semester of the academic batch MTECH-2023-25.
