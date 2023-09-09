@@ -1,0 +1,11 @@
+```bash
+ln -s /home/aryan/Documents/Workspace/Software-Systems/Q1/Q1.md softlink
+```
+
+```bash
+ln /home/aryan/Documents/Workspace/Software-Systems/Q1/Q1.md hardlink
+```
+
+```bash
+mkfifo fifo_file
+```

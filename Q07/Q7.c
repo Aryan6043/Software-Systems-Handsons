@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     while (1) {
         char buf;
         int char_read = read(fd_read, &buf, 1);
-        if (char_read == 0) break;
+        if (char_read == 0) break; // 0 symbolises end of file
         int char_written = write(fd_write, &buf, 1);
         if (char_written != 1) {
             perror("Error writing to file");

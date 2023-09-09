@@ -6,7 +6,8 @@
 
 int main(void) {
     int fd;
-    fd = open("/home/aryan/Documents/Workspace/Software-Systems/Q4/Temp/my_file.txt", O_CREAT | O_EXCL, 0644);
+    const char *full_file_name = "/home/aryan/Documents/Workspace/Software-Systems/Q4/Temp/my_file.txt";
+    fd = open(full_file_name, O_CREAT | O_EXCL, 0644);
     if (fd == -1) {
         perror("Error opening a file");
         return 1;
