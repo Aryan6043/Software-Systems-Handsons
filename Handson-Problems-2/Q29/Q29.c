@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name : 29.c
-Author : G.Sai Hemanth Kumar
+Author : Aryan Yadav
 Description : 
     Write a program to remove the message queue.
 Date: 30th Sept 2023.
