@@ -33,4 +33,8 @@ int main() {
 
     printf("Message queue has been removed.\n");
     return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e1e8b0b85a441215b711c9b8d93953daf0b49fd9
