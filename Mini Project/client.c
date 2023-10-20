@@ -69,35 +69,35 @@ void attemptStudentLogin(int sd)
     write_res = write(sd, &option, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     write_res = write(sd, &currUser, sizeof(struct student));
     if (write_res < 0 || write_res != sizeof(struct student))
     {
-        perror("write failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read failed");
+        perror("Error: Reading from the server failed.");
         exit(EXIT_FAILURE);
     }
 
     if (!result)
     {
         red();
-        printf("\nUnable to Login!\nEither your password didn't match or your account is deleted.\n\n");
+        printf("\nError: Unable to log in. Either your password didn't match or your account is deleted.\n\n");
         reset();
         chooseOption(sd);
     }
     else
     {
         green();
-        printf("\nSuccessfully logged in!\n\n");
+        printf("\nSuccess: You have logged in successfully!\n\n");
         reset();
     }
     return;
@@ -124,35 +124,35 @@ void attemptFacultyLogin(int sd)
     write_res = write(sd, &option, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     write_res = write(sd, &currUser, sizeof(struct faculty));
     if (write_res < 0 || write_res != sizeof(struct faculty))
     {
-        perror("write failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read failed");
+        perror("Error: Reading from the server failed.");
         exit(EXIT_FAILURE); // Exit or handle the error as required
     }
 
     if (!result)
     {
         red();
-        printf("\nUnable to Login!\nEither your password didn't match or your account is deleted.\n");
+        printf("\nError: Unable to log in. Either your password didn't match or your account is deleted.\n");
         reset();
         chooseOption(sd);
     }
     else
     {
         green();
-        printf("\nSuccessfully logged in!\n\n");
+        printf("\nSuccess: You have logged in successfully!\n\n");
         reset();
     }
     return;
@@ -176,35 +176,35 @@ void attemptAdminLogin(int sd)
     write_res = write(sd, &option, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     write_res = write(sd, &currUser, sizeof(struct admin));
     if (write_res < 0 || write_res != sizeof(struct admin))
     {
-        perror("write failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read failed");
+        perror("Error: Reading from the server failed.");
         exit(EXIT_FAILURE);
     }
 
     if (!result)
     {
         red();
-        printf("\nUnable to Login!\nEither your password didn't match or your account is deleted.\n");
+        printf("\nError: Unable to log in. Either your password didn't match or your account is deleted.\n");
         reset();
         chooseOption(sd);
     }
     else
     {
         green();
-        printf("\nSuccessfully logged in!\n\n");
+        printf("\nSuccess: You have logged in successfully!\n\n");
         reset();
     }
     return;
@@ -213,9 +213,9 @@ void attemptAdminLogin(int sd)
 // choose type of user
 void chooseOption(int sd)
 {
-    printf("1 : Student Login\n");
-    printf("2 : Faculty Login\n");
-    printf("3 : Admin Login\n");
+    printf("Enter 1 : For Student Login\n");
+    printf("Enter 2 : For Faculty Login\n");
+    printf("Enter 3 : For Admin Login\n");
     printf("\nChoose an option : ");
 
     scanf("%d", &option);
@@ -252,7 +252,7 @@ void viewAllCourses(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -261,7 +261,7 @@ void viewAllCourses(int sd)
     read_res = read(sd, &count, sizeof(int));
     if (read_res < 0)
     {
-        perror("read failed");
+        perror("Error: Reading from the server failed.");
         exit(EXIT_FAILURE);
     }
     yellow();
@@ -271,7 +271,7 @@ void viewAllCourses(int sd)
         read_res = read(sd, &foundCourse, sizeof(struct course));
         if (read_res < 0)
         {
-            perror("read failed");
+            perror("Error: Reading from the server failed.");
             exit(EXIT_FAILURE);
         }
 
@@ -298,7 +298,7 @@ void enrollCourse(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -312,14 +312,14 @@ void enrollCourse(int sd)
     write_res = write(sd, &enroll, sizeof(struct enrollment));
     if (write_res < 0 || write_res != sizeof(struct enrollment))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &available_seats, sizeof(int));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -328,7 +328,7 @@ void enrollCourse(int sd)
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -357,7 +357,7 @@ void dropCourse(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -372,7 +372,7 @@ void dropCourse(int sd)
     write_res = write(sd, &dropEnroll, sizeof(struct enrollment));
     if (write_res < 0 || write_res != sizeof(struct enrollment))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
     green();
@@ -392,7 +392,7 @@ void viewEnrolledCourses(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -404,14 +404,14 @@ void viewEnrolledCourses(int sd)
     write_res = write(sd, &studentID, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &count, sizeof(int));
     if (read_res < 0 || read_res != sizeof(int))
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -439,7 +439,7 @@ void changeStudentPassword(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -454,14 +454,14 @@ void changeStudentPassword(int sd)
     write_res = write(sd, &modifyStudent, sizeof(struct student));
     if (write_res < 0 || write_res != sizeof(struct student))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0 || read_res != sizeof(result))
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -491,7 +491,7 @@ void viewOfferedCourses(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -503,14 +503,14 @@ void viewOfferedCourses(int sd)
     write_res = write(sd, &facultyID, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &count, sizeof(int));
     if (read_res < 0 || read_res != sizeof(int))
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -544,7 +544,7 @@ void addNewCourse(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -564,14 +564,14 @@ void addNewCourse(int sd)
     write_res = write(sd, &addCourse, sizeof(struct course));
     if (write_res < 0 || write_res != sizeof(struct course))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -602,7 +602,7 @@ void removeOfferedCourse(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -613,7 +613,7 @@ void removeOfferedCourse(int sd)
     write_res = write(sd, &courseID, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -656,20 +656,20 @@ void updateCourseDetails(int sd)
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
     if (!result)
     {
         red();
-        printf("Error modifying the course details,please re-check the course ID!\n\n");
+        printf("Oops! We couldn't modify the course details. Please double-check the course ID.\n\n");
         reset();
     }
     else
     {
         green();
-        printf("\nSuccessfully modified the course details!\n\n");
+        printf("\nCourse details have been successfully updated!\n\n");
         reset();
     }
 
@@ -687,7 +687,7 @@ void changeFacultyPassword(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -702,14 +702,14 @@ void changeFacultyPassword(int sd)
     write_res = write(sd, &modifyFaculty, sizeof(struct faculty));
     if (write_res < 0 || write_res != sizeof(struct faculty))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0 || read_res != sizeof(result))
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -741,7 +741,7 @@ void addStudent(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -755,20 +755,20 @@ void addStudent(int sd)
     write_res = write(sd, &newStudent, sizeof(struct student));
     if (write_res < 0 || write_res != sizeof(struct student))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
     read_res = read(sd, rdBuff, sizeof(rdBuff));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0 || read_res != sizeof(result))
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -799,7 +799,7 @@ void viewStudent(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -811,7 +811,7 @@ void viewStudent(int sd)
     write_res = write(sd, &userID, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -845,7 +845,7 @@ void addFaculty(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -859,20 +859,20 @@ void addFaculty(int sd)
     write_res = write(sd, &newFaculty, sizeof(struct faculty));
     if (write_res < 0 || write_res != sizeof(struct faculty))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
     read_res = read(sd, rdBuff, sizeof(rdBuff));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -904,7 +904,7 @@ void viewFaculty(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -916,7 +916,7 @@ void viewFaculty(int sd)
     write_res = write(sd, &userID, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -946,7 +946,7 @@ void activateStudent(int sd)
     write_res = write(sd, &select, sizeof(int));
     if (write_res < 0 || write_res != sizeof(int))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -957,14 +957,14 @@ void activateStudent(int sd)
     write_res = write(sd, &activateStudent1, sizeof(struct student));
     if (write_res < 0 || write_res != sizeof(struct student))
     {
-        perror("write to server failed");
+        perror("Error: Writing to the server failed.");
         exit(EXIT_FAILURE);
     }
 
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
 
@@ -1013,7 +1013,7 @@ void blockStudent(int sd)
     read_res = read(sd, &result, sizeof(result));
     if (read_res < 0)
     {
-        perror("read from server failed");
+        perror("Error: Reading from server failed.");
         exit(EXIT_FAILURE);
     }
     if (!result)
@@ -1057,13 +1057,13 @@ void modifyStudent(int sd)
     if (!result)
     {
         red();
-        printf("Error modifying the student details,please re-check the User ID!\n\n");
+        printf("Oops! We couldn't modify the student details. Please double-check the User ID.\n\n");
         reset();
     }
     else
     {
         green();
-        printf("\nSuccessfully modified the student details!\n\n");
+        printf("\nStudent details have been successfully updated!\n\n");
         reset();
     }
     showMenu(sd);
@@ -1095,13 +1095,13 @@ void modifyFaculty(int sd)
     if (!result)
     {
         red();
-        printf("Error modifying the faculty details,please re-check the User ID!\n\n");
+        printf("Oops! We couldn't modify the faculty details. Please double-check the User ID.\n\n");
         reset();
     }
     else
     {
         green();
-        printf("\nSuccesfully modified the faculty details!\n\n");
+        printf("\nFaculty details have been successfully updated!\n\n");
         reset();
     }
     showMenu(sd);
@@ -1114,13 +1114,13 @@ void showMenu(int sd)
     // student
     if (option == 1)
     {
-        printf("..........Welcome to Student Menu..........\n\n");
-        printf("1 : View All Courses\n");
-        printf("2 : Enroll into a course\n");
-        printf("3 : Drop course\n");
-        printf("4 : View enrolled course details\n");
-        printf("5 : Change Password\n");
-        printf("6 : Exit\n");
+        printf("**************** Welcome to Student Menu ****************\n\n");
+        printf("Enter 1 : To View All Courses\n");
+        printf("Enter 2 : To Enroll into a course\n");
+        printf("Enter 3 : To Drop course\n");
+        printf("Enter 4 : To View enrolled course details\n");
+        printf("Enter 5 : To Change Password\n");
+        printf("Enter 6 : To Exit\n");
 
         printf("Select an option: ");
         scanf("%d", &select);
@@ -1156,13 +1156,13 @@ void showMenu(int sd)
     // faculty
     else if (option == 2)
     {
-        printf("..........Welcome to Faculty Menu..........\n\n");
-        printf("1 : View offered courses\n");
-        printf("2 : Add new course\n");
-        printf("3 : Remove currently offered course\n");
-        printf("4 : Update course details\n");
-        printf("5 : Change Password\n");
-        printf("6 : Exit\n");
+        printf("**************** Welcome to Faculty Menu ****************\n\n");
+        printf("Enter 1 : To View offered courses\n");
+        printf("Enter 2 : To Add new course\n");
+        printf("Enter 3 : To Remove currently offered course\n");
+        printf("Enter 4 : To Update course details\n");
+        printf("Enter 5 : To Change Password\n");
+        printf("Enter 6 : To Exit\n");
 
         printf("Select an option: ");
         scanf("%d", &select);
@@ -1198,16 +1198,16 @@ void showMenu(int sd)
     // admin
     else if (option == 3)
     {
-        printf("..........Welcome to Admin Menu..........\n\n");
-        printf("1 : Add Student\n");
-        printf("2 : View Student Details\n");
-        printf("3 : Add Faculty\n");
-        printf("4 : View Faculty Detials\n");
-        printf("5 : Activate Student\n");
-        printf("6 : Block Student\n");
-        printf("7 : Modify Student Details\n");
-        printf("8 : Modify Faculty Details\n");
-        printf("9 : Exit\n");
+        printf("**************** Welcome to Admin Menu ****************\n\n");
+        printf("Enter 1 : To Add Student\n");
+        printf("Enter 2 : To View Student Details\n");
+        printf("Enter 3 : To Add Faculty\n");
+        printf("Enter 4 : To View Faculty Detials\n");
+        printf("Enter 5 : To Activate Student\n");
+        printf("Enter 6 : To Block Student\n");
+        printf("Enter 7 : To Modify Student Details\n");
+        printf("Enter 8 : To Modify Faculty Details\n");
+        printf("Enter 9 : To Exit\n");
 
         printf("Select an option: ");
         scanf("%d", &select);
@@ -1254,7 +1254,7 @@ void showMenu(int sd)
 int main()
 {
     system("clear");
-    printf("..........Welcome to Academia..........\n\n");
+    printf("**************** Academia Course Registration Portal ****************\n\n");
 
     struct sockaddr_in server;
     int sd, msgLength;
